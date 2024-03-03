@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pobierz pliki</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Roboto+Flex:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.cdnfonts.com/css/glacial-indifference-2"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Abhaya+Libre&display=swap"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: #343d35;
+        color: #b6a086;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        line-height: 1.5;
+        font-family: "Glacial Indifference", sans-serif;
+        overflow: hidden;
+        position: relative;
+      }
+      h1 {
+        font-family: "DM Serif Display", serif;
+        font-size: 75px;
+      }
+      p {
+        text-align: justify;
+        margin-bottom: 1px;
+        font-family: "Abhaya Libre", serif;
+      }
+      input {
+        background-color: #343d35;
+        border-color: #b6a086;
+        border-width: 1px;
+        border-style: solid;
+        color: #b6a086;
+        align-self: flex-end;
+        width: 100%;
+        max-height: 12px;
+        outline: none;
+        border-radius: 10px;
+        padding: 15px;
+        font-family: "Glacial Indifference", sans-serif;
+      }
+      input[type="text"]:focus,
+      input[type="url"]:focus {
+        background-color: #343d35;
+        border-width: 2px;
+      }
+      select {
+        background-color: #343d35;
+        border-color: #b6a086;
+        border-width: 1px;
+        color: #b6a086;
+        border-style: solid;
+        align-self: flex-end;
+        margin-bottom: 3px;
+        width: 100%;
+        font-family: "Glacial Indifference", sans-serif;
+        border-radius: 10px;
+        padding: 10px;
+      }
+      button {
+        background-color: #b6a086;
+        border-width: 15px;
+        border-color: #b6a086;
+        color: #343d35;
+        font-size: 20px;
+        border-style: solid;
+        align-self: center;
+        width: 100%;
+        max-width: 200px;
+        margin-left: 37%;
+        border-radius: 10px;
+        padding: 10px;
+        max-height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-family: "DM Serif Display", serif;
+      }
+
+      .corner-circle {
+        width: 200px;
+        height: 200px;
+        background-color: #b6a086;
+        border-radius: 50%;
+        position: absolute;
+      }
+
+      .top-left {
+        top: 0;
+        left: 0;
+        margin-top: -100px;
+        margin-left: -100px;
+      }
+
+      .bottom-right {
+        bottom: 0;
+        right: 0;
+        margin-bottom: -100px;
+        margin-right: -100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="corner-circle top-left"></div>
+    <div class="corner-circle bottom-right"></div>
+    <h1>Pobierz pliki</h1>
+    <form method="post" action="/download">
+      <label for="url"
+        >Podaj link do strony, z której chcesz pobrać pliki:</label
+      >
+      <input type="url" name="url" required />
+      <br /><br />
+      <label for="extension">Jakiego rodzaju pliki chcesz pobrać?</label>
+      <select name="extension" required>
+        <optgroup label="Pliki graficzne">
+          <option value=".gif">.gif</option>
+          <option value=".jpg">.jpg</option>
+          <option value=".png">.png</option>
+        </optgroup>
+        <optgroup label="Pliki tekstowe">
+          <option value=".doc">.doc</option>
+          <option value=".docx">.docx</option>
+          <option value=".pdf">.pdf</option>
+          <option value=".txt">.txt</option>
+        </optgroup>
+        <optgroup label="Pliki dźwiękowe">
+          <option value=".aac">.aac</option>
+          <option value=".mp3">.mp3</option>
+          <option value=".wav">.wav</option>
+        </optgroup>
+        <optgroup label="Pliki wideo">
+          <option value=".avi">.avi</option>
+          <option value=".mov">.mov</option>
+          <option value=".mp4">.mp4</option>
+          <option value=".wmv">.wmv</option>
+        </optgroup>
+        <optgroup label="Pliki arkuszy">
+          <option value=".csv">.csv</option>
+          <option value=".xls">.xls</option>
+          <option value=".xlsx">.xlsx</option>
+        </optgroup>
+        <optgroup label="Pliki programowania">
+          <option value=".c">.c</option>
+          <option value=".cpp">.cpp</option>
+          <option value=".java">.java</option>
+          <option value=".py">.py</option>
+          <option value=".sql">.sql</option>
+        </optgroup>
+      </select>
+      <br /><br />
+      <label for="output_dir"
+        >Ścieżka zapisu (proszę, podaj ją bez dodatkowych znaków, np.
+        C:\pobrane):</label
+      >
+      <input type="text" id="output_dir" name="output_dir" required />
+      <br /><br />
+      <label for="zip_filename">Nazwa pliku:</label>
+      <input type="text" id="zip_filename" name="zip_filename" required />
+      <br /><br />
+      <button type="submit">Pobierz pliki</button>
+    </form>
+    {% if error %}
+    <p style="color: red">{{ error }}</p>
+    {% endif %}
+  </body>
+</html>

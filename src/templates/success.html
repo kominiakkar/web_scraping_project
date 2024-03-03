@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pobierz pliki</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Roboto+Flex:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600&display=swap"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: #343d35;
+        color: #b6a086;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        line-height: 1.5;
+        overflow: hidden;
+        position: relative;
+      }
+      h1 {
+        font-family: "DM Serif Display", serif;
+        font-size: 75px;
+      }
+      .corner-circle {
+        width: 200px;
+        height: 200px;
+        background-color: #b6a086;
+        border-radius: 50%;
+        position: absolute;
+      }
+
+      .top-left {
+        top: 0;
+        left: 0;
+        margin-top: -100px;
+        margin-left: -100px;
+      }
+
+      .bottom-right {
+        bottom: 0;
+        right: 0;
+        margin-bottom: -100px;
+        margin-right: -100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="corner-circle top-left"></div>
+    <div class="corner-circle bottom-right"></div>
+    <div id="jumping-text"><h1>Pobieranie zakończone sukcesem! :)</h1></div>
+    <script src="static/jump.js"></script>
+  </body>
+</html>
